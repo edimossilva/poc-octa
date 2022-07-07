@@ -1,0 +1,20 @@
+Add CRUD and Auth to Your Ruby on Rails App
+It’s time to add the page that allows us to do CRUD operations. In this case, we are going to add a form where a user can edit their profile information, specifically their favorite gemstone. In views/pages/account.html.erb, copy and paste this code:
+
+<% if @current_user %>
+<h1><%=@current_user.email %></h1>
+<%= link_to "home", :root, class: "item" %>
+<%= link_to "Edit your account", "/pages/account", class: "item" %>
+<%= link_to "logout", ENV['OKTA_URL'] + "/login/signout?fromURI=http://localhost:3000/sessions/destroy", class: "item" %>
+<% else %>
+<%= link_to 'Sign in via Okta', user_oktaoauth_omniauth_authorize_path, method: :post %>
+<% end %>
+
+<form id="accountForm">
+     <h1>Your Favorite Gemstone </h1>
+
+    <fieldset>
+        <input type="text" id="gemname" name="gemname" />
+    </fieldset>
+    <input type="submit" value="submit"></input>
+</form>
