@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   def user_is_logged_in?
     unless session[:oktastate]
       print('user is not logged in')
-      redirect_to user_oktaoauth_omniauth_authorize_path
+      redirect_to user_okta_omniauth_authorize_path
     end
   end
 

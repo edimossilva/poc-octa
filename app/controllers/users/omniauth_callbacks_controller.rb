@@ -5,7 +5,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   #   redirect_to after_omniauth_failure_path_for(resource_name)
   # end
 
-  def oktaoauth
+  def okta
     @user = User.from_omniauth(request.env['omniauth.auth'])
     session[:oktastate] = request.env['omniauth.auth']['uid']
     redirect_to root_path

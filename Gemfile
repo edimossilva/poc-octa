@@ -74,6 +74,6 @@ end
 gem 'activerecord-session_store'
 gem 'devise'
 gem 'figaro'
-gem 'omniauth-oktaoauth'
+gem 'omniauth-okta'
 gem 'omniauth-rails_csrf_protection', '~> 0.1'
 gem 'pry'

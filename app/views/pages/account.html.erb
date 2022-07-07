@@ -7,7 +7,7 @@ It’s time to add the page that allows us to do CRUD operations. In this case, 
 <%= link_to "Edit your account", "/pages/account", class: "item" %>
 <%= link_to "logout", ENV['OKTA_URL'] + "/login/signout?fromURI=http://localhost:3000/sessions/destroy", class: "item" %>
 <% else %>
-<%= link_to 'Sign in via Okta', user_oktaoauth_omniauth_authorize_path, method: :post %>
+<%= link_to 'Sign in via Okta', user_okta_omniauth_authorize_path, method: :post %>
 <% end %>
 
 <form id="accountForm">

@@ -8,20 +8,22 @@
 #
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
-require 'omniauth-oktaoauth'
+require 'omniauth-okta'
 Devise.setup do |config|
-  config.omniauth(:oktaoauth,
+  OmniAuth.config.allowed_request_methods = %i[get fetch post put]
+
+  config.omniauth(:okta,
                   ENV['OKTA_CLIENT_ID'],
                   ENV['OKTA_CLIENT_SECRET'],
                   scope: 'openid profile email',
                   fields: %w[profile email],
                   client_options: { site: ENV['OKTA_ISSUER'], authorize_url: ENV['OKTA_ISSUER'] + '/v1/authorize',
-                                    token_url: ENV['OKTA_ISSUER'] + '/v1/token' },
+                                    token_url: ENV['OKTA_ISSUER'] + '/v1/token',
+                                    user_info_url: ENV['USER_INFO_URL'] },
                   redirect_uri: ENV['OKTA_REDIRECT_URI'],
                   auth_server_id: ENV['OKTA_AUTH_SERVER_ID'],
                   issuer: ENV['OKTA_ISSUER'],
-                  strategy_class: OmniAuth::Strategies::Oktaoauth)
-  OmniAuth.config.allowed_request_methods = [:get]
+                  strategy_class: OmniAuth::Strategies::Okta)
 
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
